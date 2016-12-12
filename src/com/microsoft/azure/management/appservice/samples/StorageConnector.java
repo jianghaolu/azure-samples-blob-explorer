@@ -24,6 +24,9 @@ public class StorageConnector {
     private static String storageContainerName = System.getenv("storage.containerName");
 
     public static String traverseBlobs() throws Exception {
+        if (storageConnectionString == null) {
+            storageConnectionString = System.getenv("CUSTOMCONNSTR_storage.connectionString");
+        }
         // Setup the cloud storage account.
         CloudStorageAccount account = CloudStorageAccount.parse(storageConnectionString);
         // Create a blob service client
